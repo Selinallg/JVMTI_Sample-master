@@ -386,40 +386,40 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnAttach(JavaVM *vm, char *options,
     int error = jvmti_env->SetEventCallbacks(&callbacks, (jint) sizeof(callbacks));
 
     // 3：事件通知是否可用状态：
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE,
-//                         JVMTI_EVENT_OBJECT_FREE);  // 开启 回收对象监听 OK
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE,
-//                         JVMTI_EVENT_VM_OBJECT_ALLOC); // 开启 jvm 中给对象分配内存 的监听 OK
+    SetEventNotification(jvmti_env, JVMTI_ENABLE,
+                         JVMTI_EVENT_OBJECT_FREE);  // 开启 回收对象监听 OK
+    SetEventNotification(jvmti_env, JVMTI_ENABLE,
+                         JVMTI_EVENT_VM_OBJECT_ALLOC); // 开启 jvm 中给对象分配内存 的监听 OK
     SetEventNotification(jvmti_env, JVMTI_ENABLE,
                          JVMTI_EVENT_NATIVE_METHOD_BIND); // 第一次绑定或者调用 native方法  OK
 
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE,
-//                         JVMTI_EVENT_GARBAGE_COLLECTION_START); // 垃圾回收开始 OK
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE,
-//                         JVMTI_EVENT_GARBAGE_COLLECTION_FINISH); // 垃圾回收结束 OK
+    SetEventNotification(jvmti_env, JVMTI_ENABLE,
+                         JVMTI_EVENT_GARBAGE_COLLECTION_START); // 垃圾回收开始 OK
+    SetEventNotification(jvmti_env, JVMTI_ENABLE,
+                         JVMTI_EVENT_GARBAGE_COLLECTION_FINISH); // 垃圾回收结束 OK
 
 //
     SetEventNotification(jvmti_env, JVMTI_ENABLE,
                          JVMTI_EVENT_CLASS_FILE_LOAD_HOOK); // java字节码文件 加载时。OK
 
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_EXCEPTION);  // 开启 java 代码发生异常 的监听  OK
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE,
-//                         JVMTI_EVENT_EXCEPTION_CATCH);// 开启 java 代码发生异常时catch住 的监听  OK
-//
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_METHOD_ENTRY); // 方法进入  OK
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_METHOD_EXIT); // 方法退出  OK
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_BREAKPOINT);  // SetBreakPoints OK
-//
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_FIELD_ACCESS);   // 字段 访问监听 OK 需要动态绑定
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE,
-//                         JVMTI_EVENT_FIELD_MODIFICATION); // 字段 修改监听 OK 需要动态绑定
-//
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_THREAD_START);  // 线程开始运行监听 OK
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_THREAD_END);   // 线程结束运行监听 OK
-//
-//
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_FRAME_POP);  // 监听方法退出
-//    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_SINGLE_STEP);// OK-
+    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_EXCEPTION);  // 开启 java 代码发生异常 的监听  OK
+    SetEventNotification(jvmti_env, JVMTI_ENABLE,
+                         JVMTI_EVENT_EXCEPTION_CATCH);// 开启 java 代码发生异常时catch住 的监听  OK
+
+    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_METHOD_ENTRY); // 方法进入  OK
+    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_METHOD_EXIT); // 方法退出  OK
+    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_BREAKPOINT);  // SetBreakPoints OK
+
+    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_FIELD_ACCESS);   // 字段 访问监听 OK 需要动态绑定
+    SetEventNotification(jvmti_env, JVMTI_ENABLE,
+                         JVMTI_EVENT_FIELD_MODIFICATION); // 字段 修改监听 OK 需要动态绑定
+
+    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_THREAD_START);  // 线程开始运行监听 OK
+    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_THREAD_END);   // 线程结束运行监听 OK
+
+
+    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_FRAME_POP);  // 监听方法退出
+    SetEventNotification(jvmti_env, JVMTI_ENABLE, JVMTI_EVENT_SINGLE_STEP);// OK-
 
 
     // 获取 stacktrace

@@ -1,14 +1,20 @@
 package com.dodola.jvmti;
 
+import static com.dodola.jvmti.permission.PermissionManager.grantPermission;
+
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.dodola.jvmti.permission.IPermissionSuccess;
 import com.dodola.jvmtilib.JVMTIHelper;
 import com.dodola.jvmtilib.TestClass;
 
@@ -16,10 +22,29 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
+    private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            Log.d(TAG, "onCreate: grantPermission");
+            grantPermission(
+                    this,
+                    new IPermissionSuccess() {
+                        @Override
+                        public void onSuccess() {
+                            Log.d(TAG, "onSuccess: ");
+                        }
+                    },
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            );
+        }
+
         JVMTIHelper.init(this);
 
         findViewById(R.id.set_field).setOnClickListener(v -> {

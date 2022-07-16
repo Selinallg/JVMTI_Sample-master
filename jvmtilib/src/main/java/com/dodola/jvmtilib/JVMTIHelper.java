@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * Created by dodola on 2018/12/16.
  */
 public class JVMTIHelper {
+    private static final String TAG = "JVMTIHelper";
     private static String packageCodePath = "";
 
     public static void init(Context context) {
@@ -42,7 +43,9 @@ public class JVMTIHelper {
 
                 }
                 File agentLibSo = new File(jvmtiLibDir, "agent.so");
+                Log.d(TAG, "init: "+agentLibSo.getAbsolutePath());
                 if (agentLibSo.exists()) {
+                    Log.d(TAG, "init:存在==> "+agentLibSo.getAbsolutePath());
                     agentLibSo.delete();
                 }
                 Files.copy(Paths.get(new File(jvmtiAgentLibPath).getAbsolutePath()), Paths.get((agentLibSo).getAbsolutePath()));
